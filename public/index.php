@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 //Charger les constantes
 require_once dirname(dirname(__FILE__)) . "/config/constantes.php";
 //Charger le router
