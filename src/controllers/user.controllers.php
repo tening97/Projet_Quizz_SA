@@ -2,7 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['action'])) {
         if ($_REQUEST['action'] == "accueil") {
-            require_once(PATH_VIEWS . "user/accueil.html.php");
+            require_once(PATH_VIEWS . "user" . DIRECTORY_SEPARATOR . "accueil.html.php");
         }
     }
 }
@@ -12,4 +12,4 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             require_once(PATH_VIEWS . "user" . DIRECTORY_SEPARATOR . "accueil.html.php");
         }
     }
-} 
+}

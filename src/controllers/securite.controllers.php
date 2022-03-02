@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if ($_REQUEST['action'] == "connexion") {
             require_once(PATH_VIEWS . "securite" . DIRECTORY_SEPARATOR . "connexion.html.php");
         }
+    } else {
+        require_once(PATH_VIEWS . "securite" . DIRECTORY_SEPARATOR . "connexion.html.php");
     }
 }
 
@@ -32,7 +34,7 @@ function connexion(string $login, string $password): void
             //Utilisateur Existe
             $_SESSION["user-connect"] = $user;
             //?controller=user&action=connexion 
-            header("location:" . WEBROOT . "?controller=user&action=connexion ");
+            header("location:" . WEBROOT . "?controller=user&action=accueil ");
             exit();
         } else {
             //Utilisateur n'existe pas 
