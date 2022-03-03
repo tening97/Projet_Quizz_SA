@@ -15,6 +15,22 @@
             "password": "admin",
             "role": "ROLE_ADMIN",
             "score": 0
+        },
+        {
+            "nom": " faye",
+            "prenom": "Aissatou",
+            "login": "jo@gmail.com",
+            "password": "admin",
+            "role": "ROLE_JOUEUR",
+            "score": 2
+        },
+        {
+            "nom": " Ngom",
+            "prenom": "Tening",
+            "login": "teningngom97@gmail.com",
+            "password": "admint",
+            "role": "ROLE_ADMIN",
+            "score": 0
         }
     ]
 }

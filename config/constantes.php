@@ -17,3 +17,4 @@ define("WEBROOT", str_replace("index.php", "", $_SERVER['SCRIPT_NAME']));
  */
 //Constantes d'erreurs
 define("KEY_ERROR", "errors");
+define("KEY_UER_CONNECT", "user-connect");

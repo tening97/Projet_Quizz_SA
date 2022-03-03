@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_REQUEST['action'])) {
         if ($_REQUEST['action'] == "connexion") {
             require_once(PATH_VIEWS . "securite" . DIRECTORY_SEPARATOR . "connexion.html.php");
+        } elseif ($_REQUEST['action'] == "deconnexion") {
+            logout();
         }
     } else {
         require_once(PATH_VIEWS . "securite" . DIRECTORY_SEPARATOR . "connexion.html.php");
@@ -32,22 +34,31 @@ function connexion(string $login, string $password): void
         $user = find_user_login_password($login, $password);
         if (count($user) != 0) {
             //Utilisateur Existe
-            $_SESSION["user-connect"] = $user;
+
+            $_SESSION[KEY_UER_CONNECT] = $user;
             //?controller=user&action=connexion 
             header("location:" . WEBROOT . "?controller=user&action=accueil ");
             exit();
         } else {
             //Utilisateur n'existe pas 
             $errors['connexion'] = "Login ou Mot de pass Incorrect";
-            $_SESSION['errors'] = $errors;
+            $_SESSION[KEY_ERROR] = $errors;
             header("location:" . WEBROOT);
             exit();
         }
     }
     //Erreur de validation
     else {
-        $_SESSION['errors'] = $errors;
+        $_SESSION[KEY_ERROR] = $errors;
         header("location:" . WEBROOT);
         exit();
     }
+}
+
+
+function logout()
+{
+    session_destroy();
+    header("location:" . WEBROOT);
+    exit();
 }

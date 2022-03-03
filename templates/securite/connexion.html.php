@@ -1,34 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once(PATH_VIEWS . "include" . DIRECTORY_SEPARATOR . "header.inc.html.php");
+if (isset($_SESSION[KEY_ERROR])) {
+    $errors = $_SESSION[KEY_ERROR];
+    unset($_SESSION[KEY_ERROR]);
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= WEBROOT . "css" . DIRECTORY_SEPARATOR . "style.connexion.css" ?>">
-    <title>QUIZZ SA</title>
-</head>
+?>
+<link rel="stylesheet" href="<?= WEBROOT . "css" . DIRECTORY_SEPARATOR . "style.connexion.css" ?>">
 
-<body>
-    <div id="container">
+<div id="container">
+    <div class="entete">
+        <h2>Login form</h2>
+    </div>
+    <form action="<?= WEBROOT ?>" method="post">
+        <input type="hidden" name="controller" value="securite">
+        <input type="hidden" name="action" value="connexion">
 
-        <form action="<?= WEBROOT ?>" method="post">
-            <input type="hidden" name="controller" value="securite">
-            <input type="hidden" name="action" value="connexion">
-            <div class="entete">
-                <span>Login form </span>
-            </div>
+        <?php if (isset($errors['connexion'])) {
+        ?>
+            <span style="color: red;">
+            <?= $errors['connexion'];
+        }
+
+            ?>
+
+            </span>
             <div class="items">
-                <input type="text" name="login" placeholder="Login" value="<?php if (isset($_SESSION['login'])) {
-                    echo $_SESSION['login'];
-                } ?>">
-                <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-login.png" ?>" alt="">
-                <?php if (isset($_SESSION['errors']['login'])) {
-                ?>
-                    <span>
-                    <?php
 
-                    echo $_SESSION['errors']['login'];
+                <input type="text" name="login" placeholder="Login" value="">
+
+                <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-login.png" ?>" alt="">
+                <?php if (isset($errors['login'])) {
+                ?>
+                    <span style="color: red;">
+                    <?= $errors['login'];
                 }
 
                     ?>
@@ -39,26 +44,20 @@
             <div class="items">
                 <input type="password" name="password" placeholder="Password">
                 <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-password.png" ?>" alt="">
-                <?php if (isset($_SESSION['errors']['password'])) {
+                <?php if (isset($errors['password'])) {
                 ?>
-                    <span>
+                    <span style="color: red;">
                     <?php
 
-                    echo $_SESSION['errors']['password'];
+                    echo $errors['password'];
                 }
                     ?>
                     </span>
             </div>
-            <button type="submit" name="btn_con">Connexion</button>
-            <a href="">S'inscrire pour jouer</a>
+            <div class="items" id="items">
+                <button type="submit" name="btn_con">Connexion</button>
+                <a href="">S'inscrire pour jouer</a>
+            </div>
 
-        </form>
-    </div>
-    <?php
-    if (isset($_SESSION['errors'])) {
-        unset($_SESSION['errors']);
-    }
-    ?>
-</body>
-
-</html>
+    </form>
+</div>
