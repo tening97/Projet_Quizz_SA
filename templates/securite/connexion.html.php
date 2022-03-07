@@ -1,63 +1,54 @@
 <?php
-require_once(PATH_VIEWS . "include" . DIRECTORY_SEPARATOR . "header.inc.html.php");
 if (isset($_SESSION[KEY_ERROR])) {
     $errors = $_SESSION[KEY_ERROR];
     unset($_SESSION[KEY_ERROR]);
 }
 
+
 ?>
 <link rel="stylesheet" href="<?= WEBROOT . "css" . DIRECTORY_SEPARATOR . "style.connexion.css" ?>">
 
-<div id="container">
-    <div class="entete">
-        <h2>Login form</h2>
-    </div>
-    <form action="<?= WEBROOT ?>" method="post">
-        <input type="hidden" name="controller" value="securite">
-        <input type="hidden" name="action" value="connexion">
+<div id="container" class="main">
+    <div class="form-contain">
+        <div class="header-form">
+            <p>Login form</p>
+        </div>
+        <form id="forme" action="<?= WEBROOT ?>" method="post">
+            <input type="hidden" name="controller" value="securite">
+            <input type="hidden" name="action" value="connexion">
 
-        <?php if (isset($errors['connexion'])) {
-        ?>
-            <span style="color: red;">
-            <?= $errors['connexion'];
-        }
-
+            <?php if (isset($errors['connexion'])) {
             ?>
+                <span>
+                <?= $errors['connexion'];
+            }
 
-            </span>
-            <div class="items">
-
-                <input type="text" name="login" placeholder="Login" value="">
-
-                <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-login.png" ?>" alt="">
-                <?php if (isset($errors['login'])) {
                 ?>
-                    <span style="color: red;">
-                    <?= $errors['login'];
-                }
 
-                    ?>
+                </span>
+                <div class="items">
+                    <div class="item">
 
-                    </span>
+                        <input type="text" name="login" placeholder="Login" value="" id="login">
 
-            </div>
-            <div class="items">
-                <input type="password" name="password" placeholder="Password">
-                <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-password.png" ?>" alt="">
-                <?php if (isset($errors['password'])) {
-                ?>
-                    <span style="color: red;">
-                    <?php
+                        <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-login.png" ?>" alt="">
 
-                    echo $errors['password'];
-                }
-                    ?>
-                    </span>
-            </div>
-            <div class="items" id="items">
-                <button type="submit" name="btn_con">Connexion</button>
-                <a href="">S'inscrire pour jouer</a>
-            </div>
+                    </div>
+                    <span style="color: red;"><?= isset($errors['login']) ? $errors['login'] : '' ?></span>
+                    <div class="item">
+                        <input type="password" name="password" placeholder="Password" id="pwd">
+                        <img src="<?= WEBROOT . "img" . DIRECTORY_SEPARATOR . "ic-password.png" ?>" alt="">
+                    </div>
+                    <span style="color: red;"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
 
-    </form>
+                </div>
+                <div class="connect">
+                    <button name="btn_con" class="btn">Connexion</button>
+                    <a class="inscrire" href="<?= WEBROOT . "?controller=securite&action=inscription" ?>">S'inscrire pour jouer</a>
+                </div>
+
+        </form>
+    </div>
+
 </div>
+<script src="<?= WEBROOT . "js" . DIRECTORY_SEPARATOR . "connexion.js" ?>"></script>

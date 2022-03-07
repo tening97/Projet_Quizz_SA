@@ -1,17 +1,27 @@
-<?php
-require_once(PATH_VIEWS . "include" . DIRECTORY_SEPARATOR . "header.inc.html.php")
-?>
-<table>
+<link rel="stylesheet" href="<?= WEBROOT . "css" . DIRECTORY_SEPARATOR . "style.liste_joueur.css" ?>">
+
+
+
+ <table>
     <tr>
         <th>Nom</th>
-        <th>Prenom</th>
+        <th>Prénom</th>
         <th>Score</th>
     </tr>
-    <?php foreach ($data as $value) : ?>
-        <tr>
-            <td><?= $value['nom'] ?></td>
-            <td><?= $value['prenom'] ?></td>
-            <td><?= $value['score'] ?></td>
-        </tr>
-    <?php endforeach ?>
+
+    <tr>
+
+        <?php
+
+        foreach ($data as $value) { ?>
+            <td><?= $value["nom"] ?></td>
+            <td><?= $value["prenom"] ?></td>
+            <td><?= $value["score"] . "pts" ?></td>
+    </tr>
+
+
+<?php    }
+?>
+
 </table>
+</div>

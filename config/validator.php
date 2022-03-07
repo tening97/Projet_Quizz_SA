@@ -15,6 +15,9 @@ invalid")
     }
 }
 function valid_password(string $key, string $data, array &$errors, string
-$message = "password invalid")
-{ 
+$message = "Le mot de passe saisi n'est pas correcte")
+{
+    if (!preg_match("/[a-zA-Z]/", $data) || !preg_match("/[0-9]/", $data) || ($data < 6)) {
+        $errors[$key] = $message;
+    }
 }
